@@ -245,6 +245,7 @@ require('lazy').setup({
   --    require('gitsigns').setup({ ... })
   --
   -- See `:help gitsigns` to understand what the configuration keys do
+
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
@@ -254,6 +255,44 @@ require('lazy').setup({
         delete = { text = '_' },
         topdelete = { text = '‾' },
         changedelete = { text = '~' },
+      },
+      numhl = true,
+    },
+    keys = {
+      {
+        '[c',
+        function()
+          require('gitsigns').prev_hunk()
+        end,
+        desc = 'Go to previous hunk',
+      },
+      {
+        ']c',
+        function()
+          require('gitsigns').next_hunk()
+        end,
+        desc = 'Go to next hunk',
+      },
+      {
+        '<leader>hr',
+        function()
+          require('gitsigns').reset_hunk()
+        end,
+        desc = 'Reset hunk',
+      },
+      {
+        '<leader>hp',
+        function()
+          require('gitsigns').preview_hunk()
+        end,
+        desc = 'Preview hunk',
+      },
+      {
+        '<leader>hb',
+        function()
+          require('gitsigns').blame_line()
+        end,
+        desc = 'Blame line',
       },
     },
   },
@@ -565,7 +604,7 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
+        clangd = {},
         -- gopls = {},
         -- pyright = {},
         -- rust_analyzer = {},
