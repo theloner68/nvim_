@@ -925,6 +925,38 @@ require('lazy').setup({
   --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'custom.plugins' },
+
+  {
+    'melbaldove/llm.nvim',
+    dependencies = { 'nvim-neotest/nvim-nio' },
+    config = function(_, opts)
+      vim.keymap.set('n', '<leader>km', function()
+        require('llm').create_llm_md()
+      end, { desc = 'Create LLM Markdown' })
+
+      -- keybinds for prompting with groq
+      vim.keymap.set('n', '<leader>kg', function()
+        require('llm').prompt { replace = false, service = 'groq' }
+      end, { desc = 'Prompt with groq (replace = false)' })
+      vim.keymap.set('v', '<leader>kg', function()
+        require('llm').prompt { replace = false, service = 'groq' }
+      end, { desc = 'Prompt with groq (replace = false)' })
+      vim.keymap.set('v', '<leader>kG', function()
+        require('llm').prompt { replace = true, service = 'groq' }
+      end, { desc = 'Prompt with groq (replace = true)' })
+
+      -- keybinds for prompting with openai
+      vim.keymap.set('n', '<leader>ko,', function()
+        require('llm').prompt { replace = false, service = 'openai' }
+      end, { desc = 'Prompt with OpenAI (replace = false)' })
+      vim.keymap.set('v', '<leader>ko,', function()
+        require('llm').prompt { replace = false, service = 'openai' }
+      end, { desc = 'Prompt with OpenAI (replace = false)' })
+      vim.keymap.set('v', '<leader>kO.', function()
+        require('llm').prompt { replace = true, service = 'openai' }
+      end, { desc = 'Prompt with OpenAI (replace = true)' })
+    end,
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
