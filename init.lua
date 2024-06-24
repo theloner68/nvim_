@@ -926,7 +926,7 @@ require('lazy').setup({
   --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
   { import = 'custom.plugins' },
   {
-    'melbaldove/llm.nvim',
+    'yacineMTB/llm.nvim',
     dependencies = { 'nvim-neotest/nvim-nio' },
     config = function()
       -- Manually configure the services
@@ -960,13 +960,13 @@ require('lazy').setup({
             api_key_name = 'OPENAI_API_KEY',
             system_prompt = helpful_prompt,
           },
-          claude = {
+          anthropic = {
             url = 'https://api.anthropic.com/v1/messages',
             model = 'claude-3-5-sonnet-20240620',
             api_key_name = 'ANTHROPIC_API_KEY',
             system_prompt = system_prompt,
           },
-          claude_help = {
+          anthropic_help = {
             url = 'https://api.anthropic.com/v1/messages',
             model = 'claude-3-5-sonnet-20240620',
             api_key_name = 'ANTHROPIC_API_KEY',
@@ -975,29 +975,29 @@ require('lazy').setup({
         },
       }
 
-      vim.keymap.set('v', '<leader>k', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>k', function()
         require('llm').prompt { replace = true, service = 'groq' }
-      end, { desc = 'Prompt with groq (replace = true)' })
+      end, { desc = 'llm groq' })
 
-      vim.keymap.set('v', '<leader>K', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>K', function()
         require('llm').prompt { replace = false, service = 'groq_help' }
-      end, { desc = 'Prompt with groq (replace = false)' })
+      end, { desc = 'llm groq_help' })
 
-      vim.keymap.set('v', '<leader>L', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>L', function()
         require('llm').prompt { replace = false, service = 'openai_help' }
-      end, { desc = 'Prompt with openai (replace = false)' })
+      end, { desc = 'llm openai_help' })
 
-      vim.keymap.set('v', '<leader>l', function()
+      vim.keymap.set({ 'n', 'v' }, '<leader>l', function()
         require('llm').prompt { replace = true, service = 'openai' }
-      end, { desc = 'Prompt with openai (replace = true)' })
+      end, { desc = 'llm openai' })
 
-      vim.keymap.set('n', '<leader>I', function()
-        require('llm').prompt { replace = false, service = 'anthropic' }
-      end, { desc = 'Prompt with anthropic (replace = false)' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>I', function()
+        require('llm').prompt { replace = false, service = 'anthropic_help' }
+      end, { desc = 'llm anthropic_help' })
 
-      vim.keymap.set('n', '<leader>i', function()
-        require('llm').prompt { replace = true, service = 'anthropic_help' }
-      end, { desc = 'Prompt with anthropic (replace = true)' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>i', function()
+        require('llm').prompt { replace = true, service = 'anthropic' }
+      end, { desc = 'llm anthropic' })
     end,
   },
 }, {
