@@ -893,6 +893,25 @@ require('lazy').setup({
     end,
   },
   {
+      "3rd/image.nvim",
+      config = function()
+        require('image').setup()
+      end
+  },
+  {
+    "yacineMTB/pyrepl.nvim",
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    config = function()
+      require("pyrepl").setup({
+        url = "http://localhost:5000/execute"
+      })
+    end,
+    keys = {
+      { "<leader>p", function() require('pyrepl').run_selected_lines() end, mode = "v", desc = "Run selected lines" }
+    }
+  },
+
+  {
     'yacineMTB/dingllm.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
@@ -969,7 +988,7 @@ require('lazy').setup({
       vim.keymap.set({ 'n', 'v' }, '<leader>i', anthropic_replace, { desc = 'llm anthropic' })
     end,
   },
-{ import = 'custom.plugins' },
+  { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
