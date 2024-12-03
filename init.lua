@@ -920,21 +920,21 @@ require('lazy').setup({
       local helpful_prompt = 'You are a helpful assistant. What I have sent are my notes so far. You are very curt, yet helpful.'
       local dingllm = require 'dingllm'
 
-      local function groq_replace()
+      local function grok_replace()
         dingllm.invoke_llm_and_stream_into_editor({
-          url = 'https://api.groq.com/openai/v1/chat/completions',
-          model = 'llama3-70b-8192',
-          api_key_name = 'GROQ_API_KEY',
+          url = 'https://api.x.ai/v1/chat/completions',
+          model = 'grok-beta',
+          api_key_name = 'XAI_API_KEY',
           system_prompt = system_prompt,
           replace = true,
         }, dingllm.make_openai_spec_curl_args, dingllm.handle_openai_spec_data)
       end
 
-      local function groq_help()
+      local function grok_help()
         dingllm.invoke_llm_and_stream_into_editor({
-          url = 'https://api.groq.com/openai/v1/chat/completions',
-          model = 'llama3-70b-8192',
-          api_key_name = 'GROQ_API_KEY',
+          url = 'https://api.x.ai/v1/chat/completions',
+          model = 'grok-beta',
+          api_key_name = 'XAI_API_KEY',
           system_prompt = helpful_prompt,
           replace = false,
         }, dingllm.make_openai_spec_curl_args, dingllm.handle_openai_spec_data)
@@ -980,8 +980,8 @@ require('lazy').setup({
         }, dingllm.make_anthropic_spec_curl_args, dingllm.handle_anthropic_spec_data)
       end
 
-      vim.keymap.set({ 'n', 'v' }, '<leader>k', groq_replace, { desc = 'llm groq' })
-      vim.keymap.set({ 'n', 'v' }, '<leader>K', groq_help, { desc = 'llm groq_help' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>k', grok_replace, { desc = 'llm grok' })
+      vim.keymap.set({ 'n', 'v' }, '<leader>K', grok_help, { desc = 'llm grok_help' })
       vim.keymap.set({ 'n', 'v' }, '<leader>L', openai_help, { desc = 'llm openai_help' })
       vim.keymap.set({ 'n', 'v' }, '<leader>l', openai_replace, { desc = 'llm openai' })
       vim.keymap.set({ 'n', 'v' }, '<leader>I', anthropic_help, { desc = 'llm anthropic_help' })
