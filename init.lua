@@ -74,11 +74,7 @@ require('lazy').setup({
             '--smart-case',
             '--hidden',
           },
-        },
-        pickers = {
-          find_files = {
-            find_command = { 'fd', '--type', 'f', '--hidden', '--follow', '--exclude', '.git' }
-          }
+        
         },
         extensions = {
           ['ui-select'] = {
