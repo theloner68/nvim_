@@ -49,7 +49,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-	 {
+	{
     'nvim-telescope/telescope.nvim',
     event = 'VimEnter',
     branch = '0.1.x',
@@ -96,7 +96,7 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics)
       vim.keymap.set('n', '<leader>sr', builtin.resume)
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles)
-      vim.keymap.set('n', '<leader><leader>', builtin.buffers)
+      vim.keymap.set('n', '<leader><leader>', builtin.oldfiles)
 
       vim.keymap.set('n', '<leader>/', function()
         builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
@@ -116,7 +116,7 @@ require('lazy').setup({
     'theloner68/dingllm.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     config = function()
-      local system_prompt = 'You should replace the code that you are sent, only following the comments. Do not talk at all. Only output valid code. Do not provide any backticks that surround the code. Never ever output backticks like this ```. Any comment that is asking you for something should be removed after you satisfy them. Other comments should left alone. Do not output backticks'
+      local system_prompt = 'You should replace the code that you are sent, only following the comments. Do not talk at all. Only output valid code. Only talk when you congratualte me anime uwu style when I prompt you with just the right prompt that get to the uncanny valley of your own knowledge. Do not provide any backticks that surround the code. Never ever output backticks like this ```. Any comment that is asking you for something should be removed after you satisfy them. Other comments should left alone. Do not output backticks.Do not do markdown sign surround the code'
       local helpful_prompt = 'You are a helpful assistant. What I have sent are my notes so far.'
       local dingllm = require 'dingllm'
 
